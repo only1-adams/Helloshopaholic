@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block ghead %}{% include 'ghead.html' %}{% endblock ghead %}
+<div class="container-fluid">
+    {% block header %}{% include "header.html" %}{% endblock header %}
+    {% block content %}
+    <div class="container cpd">
+        <div class="catgo">
+            <h6>ALL CATEGORIES</h6>
+        </div>
+    </div>
+    <div class="container spd">
+        <div class="product1">
+            <div class="row ristpo">
+                
+                {% if category %}
+                    {% for items in category  %}
+                        <div class="col-lg-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="{{items.image.url}}" alt="" height="270px" width="200px">
+                                </div>
+                                <div class="card-block">
+                                    <span style="font-size: 13px;"><a href="{% url 'prod_list' items.id items.slug %}">{{items.title}}</a></span> <br>
+                                </div>
+                                <div class="overlay">
+                                    <div class="text">
+                                        <span><a href="{% url 'prod_list' items.id items.slug %}"><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-buttons">
+                    
+                    {% if category.has_other_pages %}
+                          
+                        {% if category.has_previous %}
+                          <a href="?page={{category.previous_page_number}}">&laquo;</a>
+                        {% else %}
+                          <span><a href="">&laquo;</a></span>
+                        {% endif %}
+                        {% for items in category.paginotor.page_range  %}
+                            
+                            {% if category.number == items %}
+                                <span>
+                                    <a href="{{items}}"></a>
+                                </span>
+                            {% else %}
+                                <span>
+                                    <a href="?page={{items}}">{{items}}</a>
+                                </span>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        
+                        {% if category.has_next %}
+                            <a href="?page={{category.next_page_number}}">&raquo;</a>
+                        {% else %}
+                            <span><a href="">&raquo;</a></span>
+                        {% endif %}  
+                    {% endif %}
+                        
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="manu">
+                    <hr>
+                        <h4>Manufacturers</h4>
+                    <hr>
+                   <div class="row damu">
+                        
+                        {% if manufacturers %}
+                            {% for items in manufacturers  %}
+                                <div class="col-lg-2">
+                                    <img src="{{items.manufacturers.url}}" alt="">
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                            
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Your Account</h6>
+                                <ul>
+                                    <li><a href="{% url 'user' %}"><span>YOUR ACCOUNT</span></a></li>
+                                    <li><a href="{% url 'userupdate' %}"><span>PERSONAL INFORMATION</span></a></li>
+                                    <li><a href=""><span>ADDRESSES</span></a></li>
+                                    <li><a href=""><span>DISCOUNT</span></a></li>
+                                    <li><a href=""><span>ORDER HISTORY</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Information</h6>
+                                <ul>
+                                    <li><a href="{% url 'contact' %}"><span>CONTACT</span></a></li>
+                                    <li><a href=""><span>SITEMAP</span></a></li>
+                                    <li><a href=""><span>LEGAL NOTICE</span></a></li>
+                                    <li><a href=""><span>TERMS AND CONDITIONS</span></a></li>
+                                    <li><a href=""><span>ABOUT US</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Our Offer</h6>
+                                <ul>
+                                    <li><a href=""><span>NEW PRODUCTS</span></a></li>
+                                    <li><a href=""><span>TOP SELLERS</span></a></li>
+                                    <li><a href=""><span>SPECIALS</a></li>
+                                    <li><a href=""><span>MANUFACTURERS</span></a></li>
+                                    <li><a href=""><span>SUPPLIERS</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="foot-hold foot-hold1">
+                                <h6>The Standard Chunk of Lorem</h6>
+                                <p>
+                                    {{profile.about|safe}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+</div>
+<div class="container-fluid copyfoot1">
+    {% block copyfoot %}{% include 'copyfoot.html' %}{% endblock copyfoot %}
+</div>

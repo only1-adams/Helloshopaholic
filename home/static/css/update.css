@@ -1,0 +1,172 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    font-family: 'Roboto Slab', serif;
+    background-image: url(../images/white_leather.png);
+    background-position: center;
+    
+}
+.top{
+    background-color:rgb(231, 231, 231);
+    display: flex;
+    box-shadow: 0px 2px 2px 0px gray;
+}
+.icon{
+    display: flex;
+    margin-left: 10%;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.social{
+    margin-right: 5px;
+    background-color: gray;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 50px;
+}
+.social i{
+    font-size: 20px;
+    color: white;
+}
+.social:hover{
+    background-color: orange;
+}
+.top .active{
+    background-color: orange;
+    color: white;
+}
+.top .active i{
+    font-size: 14px;
+    margin-right: 3px;
+}
+ .top a i{
+    font-size: 14px;
+    margin-right: 3px;
+}
+ .top a{
+    position: relative;
+    left: 26%;
+    margin-right: 5px;
+    padding: 5px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+.logo img{
+    width: 200px;
+}
+.small{
+    font-size: 13px;
+    font-weight: bold;
+    background-color: orange;
+    margin-left: 3px;
+    padding: 6px;
+    border-radius: 15px;
+    color: white;
+}
+.top a:hover{
+    text-decoration: none;
+    color: white;
+    background-color: orange;
+}
+
+.c1{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 10px;
+    padding-left: 40px;
+    padding-right: 135px;
+    margin-top: 20px;
+}
+
+.line{
+    background-color: white;
+    padding: 5px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.dot{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    border: 2px  dotted  orangered;
+    padding: 5px;
+}
+.dot span{
+    font-size: 12px;
+    color: orangered;
+    font-weight: bold;
+}
+.euro{
+    padding: 5px;
+}
+.euro span{
+    font-size: 14px;
+    float: right;
+    font-weight: bold;
+    margin-left: 7px;
+}
+.gr{
+    background-color: lightgray;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 3px;
+    margin-top: 10px;
+    font-weight: lighter;
+    transition: 0.5s;
+}
+.gr:hover{
+    background-color: gray;
+}
+.gra{
+    background-color: orange;
+    color: white;
+}
+.gra:hover{
+    background-color: rgb(194, 126, 0);
+}
+.sci{
+    position: absolute;
+    left: 36%;
+    bottom: 70%;
+    
+}
+.sci i{
+    font-size: 22px;
+    color: orangered;
+}
+.smallacc{
+    display: none;
+}
+.toggler{
+    display: none;
+}
+.menu-list{
+    display: none;
+}
+.line:hover{
+    background-color: orangered;
+}
+.line:hover .dot{
+    border: 2px dotted white;
+}
+.line:hover .dot span{
+    color: white;
+}
+.line:hover .sci i{
+    color: white;
+}

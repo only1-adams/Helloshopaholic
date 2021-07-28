@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block ghead %}{% include 'acheader.html' %}{% endblock ghead %}
+        <div class="container-fluid">
+            {% block header %}{% include 'headera.html' %}{% endblock header %}
+            {% block content %}
+                <div class="container cpd dfd">
+                    <div class="catgo">
+                        <h6>REGISTER</h6>
+                    </div>
+                </div>
+                <div class="container spd">
+                    <div class="register1">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="resmage cosmage">
+                                    <img src="{% static '' %}images/Untitled-1.png" alt="" width="450px" height="450px">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                
+                                {% if messages %}
+                                    {% for message in messages  %}
+                                        <div class="alert alert-success alert-{{message.tags}}" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            {{message}}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                    
+                                <div class="resres">
+                                    <form action="{% url 'registerform' %}" id="RegForm" method="POST">
+                                        {% csrf_token %}
+                                        <div class="firstn">
+                                            <div>
+                                                <label for="first_name">First Name</label> <br>
+                                                <input type="text" class="rew" placeholder="First Name" name="first_name">
+                                            </div>
+                                            <div>
+                                                <label for="last_name">Last Name</label> <br>
+                                                <input type="text" class="rew" placeholder="Last Name" name="last_name">
+                                            </div>
+                                        </div>
+                                        
+                                        <label for="email">Email</label> <br>
+                                        <input type="email" class="rew" placeholder="Email" name="email">
+                                        <br>
+                                        <label for="username">Username</label> <br>
+                                        <input type="text" class="rew" placeholder="Username" name="username">
+                                    
+                                        <br>
+                                        <label for="password1">Password</label> <br>
+                                        <input type="password" class="rew" placeholder="Password" name="password1">
+                                    
+                                        <br>
+                                        <label for="password2">Password</label> <br>
+                                        <input type="password" class="rew" placeholder="Confirm Password" name="password2">
+                                        <br>
+                                        <label for="date">Date</label> <br>
+                                        <input type="date" class="rew" name="date_of_birth">
+                                        <br>
+                                        <button type="submit" class="btd">Register</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="manu">
+                                <hr>
+                                    <h4>Manufacturers</h4>
+                                <hr>
+                            <div class="row damu">
+                                
+                                {% if manufacturers %}
+                                    {% for items in manufacturers  %}
+                                
+                                        <div class="col-lg-2">
+                                            <img src="{{items.manufacturers.url}}" alt="">
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                    
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="footer">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="foot-hold">
+                                            <h6>Your Account</h6>
+                                            <ul>
+                                                <li><a href="{% url 'user' %}"><span>YOUR ACCOUNT</span></a></li>
+                                                <li><a href="{% url 'userupdate' %}"><span>PERSONAL INFORMATION</span></a></li>
+                                                <li><a href=""><span>ADDRESSES</span></a></li>
+                                                <li><a href=""><span>DISCOUNT</span></a></li>
+                                                <li><a href=""><span>ORDER HISTORY</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="foot-hold">
+                                            <h6>Information</h6>
+                                            <ul>
+                                                <li><a href="{% url 'contact' %}"><span>CONTACT</span></a></li>
+                                                <li><a href=""><span>SITEMAP</span></a></li>
+                                                <li><a href=""><span>LEGAL NOTICE</span></a></li>
+                                                <li><a href=""><span>TERMS AND CONDITIONS</span></a></li>
+                                                <li><a href=""><span>ABOUT US</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="foot-hold">
+                                            <h6>Our Offer</h6>
+                                            <ul>
+                                                <li><a href=""><span>NEW PRODUCTS</span></a></li>
+                                                <li><a href=""><span>TOP SELLERS</span></a></li>
+                                                <li><a href=""><span>SPECIALS/span></a></li>
+                                                <li><a href=""><span>MANUFACTURERS</span></a></li>
+                                                <li><a href=""><span>SUPPLIERS</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="foot-hold foot-hold1">
+                                            <h6>{{profile.title|safe}}</h6>
+                                            <p>
+                                                {{profile.about|safe}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock content %}
+        </div>
+        <div class="container-fluid copyfoot1">
+            {% block copyfoot %}{% include 'copyfoot.html' %}{% endblock copyfoot %}
+        </div>

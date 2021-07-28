@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block ghead %}{% include 'acheader.html' %}{% endblock ghead %}
+    <div class="container-fluid">
+        {% block header %}{% include 'header.html' %}{% endblock header %}
+        {% block content %}
+        <div class="container cpd dfd">
+            <div class="catgo">
+                <h6>UPDATE PROFILE</h6>
+            </div>
+        </div>
+        <div class="container spd">
+            <div class="register1">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="resres">
+                            
+                            {% if messages %}
+                                {% for message in messages  %}
+                                <div class="alert alert-success alert-{{message.tags}}" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{message}}
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                                
+                            <form action="{% url 'userupdate' %}" id="RegForm" method="POST">
+                            {% csrf_token %}
+                                <div class="firstn">
+                                    <div>
+                                        <label for="first_name">First Name</label> <br>
+                                        {{profileform.first_name}}
+                                    </div>
+                                    <div>
+                                        <label for="last_name">Last Name</label> <br>
+                                        {{profileform.last_name}}
+                                    </div>
+                                </div>
+                                
+                                <label for="email">Phone</label> <br>
+                                {{profileform.phone}}
+                                <br>
+                                <label for="username">Address</label> <br>
+                                {{profileform.address}}
+                            
+                                <br>
+                                <label for="password1">City</label> <br>
+                                {{profileform.city}}
+                            
+                                <br>
+                                <label for="password2">State</label> <br>
+                                {{profileform.state}}
+                                <br>
+                                <label for="date">Country</label> <br>
+                                {{profileform.country}}
+                                <br>
+                                <label for="date">Profile Image</label> <br>
+                                {{profileform.image}}
+                                <br>
+                                <button type="submit" class="btd std">UPDATE PROFILE</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="manu">
+                        <hr>
+                            <h4>Manufacturers</h4>
+                        <hr>
+                       <div class="row damu">
+                           
+                           {% if manufacturers %}
+                                {% for items in manufacturers  %}
+                                    <div class="col-lg-2">
+                                        <img src="{{items.manufacturers.url}}" alt="">
+                                    </div>
+                                  
+                                {% endfor %}
+                            {% endif %}
+                                
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Your Account</h6>
+                                    <ul>
+                                        <li><a href="{% url 'user' %}"><span>YOUR ACCOUNT</span></a></li>
+                                        <li><a href="{% url 'userupdate' %}"><span>PERSONAL INFORMATION</span></a></li>
+                                        <li><a href=""><span>ADDRESSES</span></a></li>
+                                        <li><a href=""><span>DISCOUNT</span></a></li>
+                                        <li><a href=""><span>ORDER HISTORY</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Information</h6>
+                                    <ul>
+                                        <li><a href="{% url 'contact' %}"><span>CONTACT</span></a></li>
+                                        <li><a href=""><span>SITEMAP</span></a></li>
+                                        <li><a href=""><span>LEGAL NOTICE</span></a></li>
+                                        <li><a href=""><span>TERMS AND CONDITIONS</span></a></li>
+                                        <li><a href=""><span>ABOUT US</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Our Offer</h6>
+                                    <ul>
+                                        <li><a href=""><span>NEW PRODUCTS</span></a></li>
+                                        <li><a href=""><span>TOP SELLERS</span></a></li>
+                                        <li><a href=""><span>SPECIALS/span></a></li>
+                                        <li><a href=""><span>MANUFACTURERS</span></a></li>
+                                        <li><a href=""><span>SUPPLIERS</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="foot-hold foot-hold1">
+                                    <h6>{{profile.title|safe}}</h6>
+                                    <p>
+                                        {{profile.about|safe}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock content %}
+    </div>
+    <div class="container-fluid copyfoot1">
+        {% block copyfoot %}{% include 'copyfoot.html' %}{% endblock copyfoot %}
+    </div>

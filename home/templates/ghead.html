@@ -1,0 +1,56 @@
+<div class="container-fluid top" id="top">
+    <div class="icon">
+        <div class="social">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+        </div>
+        <div class="social">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+        </div>
+        <div class="social">
+            <i class="fa fa-youtube" aria-hidden="true"></i>
+        </div>
+        <div class="social">
+            <i class="fa fa-tumblr" aria-hidden="true"></i>
+        </div>
+    </div>
+    <a href="{% url 'index' %}" class="active"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+    
+    {% if user.id is not None %}
+        <a href="{% url 'user' %}"><i class="fa fa-user" aria-hidden="true"></i>Welcome! 
+                                {% if request.user.first_name %}
+                                    {{request.user.first_name}}
+                                {% else %}
+                                    {{request.user.username}}
+                                {% endif %}
+        </a>
+        <a href="{% url 'order:shopcart' %}"><i class="fa fa-cart-plus" aria-hidden="true"></i>
+            
+            {% if itemcount > 0 %}
+                {{itemcount}}
+            {% else %}
+                0
+            {% endif %}
+                 Item(s)
+        </a>
+        <a href="{% url 'logoutfunc' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+        <a href="{% url 'contact' %}"><i class="fa fa-envelope" aria-hidden="true"></i>Contact us</a>
+        <a href=""><i class="fa fa-info-circle" aria-hidden="true"></i>About Us</a>
+    {% else %}
+        <a href="{% url 'loginform' %}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a>
+        <a href="{% url 'registerform' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Free Register</a>
+        <a href="{% url 'contact' %}"><i class="fa fa-envelope" aria-hidden="true"></i>Contact us</a>
+        <a href=""><i class="fa fa-info-circle" aria-hidden="true"></i>About Us</a>
+    {% endif %}
+        
+    
+    <!-- {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-{{message.tags}}" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %} -->
+</div>

@@ -1,0 +1,165 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block ghead %}{% include 'acheader.html' %}{% endblock ghead %}
+        <div class="container-fluid">
+            {% block header %}{% include 'header.html' %}{% endblock header %}
+            {% block content %}
+            <div class="container cpd">
+                <div class="catgo">
+                    <h6>YOUR PROFILE</h6>
+                </div>
+            </div>
+            <div class="container spd">
+                <div class="row listpo">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="product hghg tgr">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <header>
+                                                <h6><strong>User Panel</strong></h6>
+                                            </header>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-lg-12 rgt ">
+                                            <ul>
+                                                <li><a href="{% url 'index' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                                                <li><a href="{% url 'userupdate' %}"><i class="fa fa-user" aria-hidden="true"></i> Update Profile</a></li>
+                                                <li><a href="{% url 'userpassword' %}"><i class="fa fa-key" aria-hidden="true"></i> Change Password</a></li>
+                                                <li><a href="{% url 'logoutfunc' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <hr class="rehr">
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="product1">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="newu">
+                                                <span>First Name:</span>
+                                                <input type="text" class="rew" value="{{profiles.first_name}}" readonly>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="newu">
+                                                <span>Last Name:</span>
+                                                <input type="text" class="rew" value="{{profiles.last_name}}" readonly>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="newu">
+                                                <span>Email:</span>
+                                                <input type="text" class="rew" value="{{profiles.user.email}}" readonly>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="newu">
+                                                <span>State:</span>
+                                                <input type="text" class="rew" value="{{profiles.state}}" readonly>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="newu">
+                                                <span>Phone:</span>
+                                                <input type="text" class="rew" value="{{profiles.phone}}" readonly>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="manu">
+                            <hr>
+                                <h4>Manufacturers</h4>
+                            <hr>
+                           <div class="row damu">
+                                {% if manufacturers %}
+                                    {% for items in manufacturers  %}
+                                        <div class="col-lg-2">
+                                            <img src="{{items.manufacturers.url}}" alt="">
+                                        </div>
+                                    
+                                    {% endfor %}
+                                {% endif %}
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="foot-hold">
+                                        <h6>Your Account</h6>
+                                        <ul>
+                                            <li><a href="{% url 'user' %}"><span>YOUR ACCOUNT</span></a></li>
+                                            <li><a href="{% url 'userupdate' %}"><span>PERSONAL INFORMATION</span></a></li>
+                                            <li><a href=""><span>ADDRESSES</span></a></li>
+                                            <li><a href=""><span>DISCOUNT</span></a></li>
+                                            <li><a href=""><span>ORDER HISTORY</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="foot-hold">
+                                        <h6>Information</h6>
+                                        <ul>
+                                            <li><a href="{% url 'contact' %}"><span>CONTACT</span></a></li>
+                                            <li><a href=""><span>SITEMAP</span></a></li>
+                                            <li><a href=""><span>LEGAL NOTICE</span></a></li>
+                                            <li><a href=""><span>TERMS AND CONDITIONS</span></a></li>
+                                            <li><a href=""><span>ABOUT US</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="foot-hold">
+                                        <h6>Our Offer</h6>
+                                        <ul>
+                                            <li><a href=""><span>NEW PRODUCTS</span></a></li>
+                                            <li><a href=""><span>TOP SELLERS</span></a></li>
+                                            <li><a href=""><span>SPECIALS/span></a></li>
+                                            <li><a href=""><span>MANUFACTURERS</span></a></li>
+                                            <li><a href=""><span>SUPPLIERS</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="foot-hold foot-hold1">
+                                        <h6>{{profile.title|safe}}</h6>
+                                        <p>
+                                            {{profile.about|safe}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock content %}
+        </div>
+        <div class="container-fluid copyfoot1">
+            {% block copyfoot %}{% include 'copyfoot.html' %}{% endblock copyfoot %}
+        </div>

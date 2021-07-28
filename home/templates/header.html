@@ -1,0 +1,81 @@
+{% load static %}
+<div class="container c1">
+    <div class="logo">
+        <div class="ham">
+                    <!-- HAMBURGER -->
+            <div class="menu-wrap">
+                <input type="checkbox"  class="toggler">
+                <div class="hamburger"><div></div></div>
+                <div class="menu-list">
+                    <div>
+                        <div>
+                            <ul>
+                                <li><a href="{%url 'index' %}">Home</a></li>
+                                <li><a href="">About us</a></li>
+                                <li><a href="{% url 'contact' %}">Contact us</a></li>
+                                
+                                {% if user.id is not None %}
+                                    <li class="catr"><span style="color: orangered; font-weight:bold">OUR CATEGORIES</span> <a href="{% url 'category' %}">See all</a></li>
+                                
+                                    {% if category_a %}
+                                        {% for items in category_a  %}
+                                            <li><a href="{% url 'prod_list' items.id items.slug %}">{{items.title}}</a></li>
+                                        {% endfor %}
+                                    {% endif %}
+                                  
+                                    <li class="catr"><span style="color: orangered; font-weight:bold">MY ACCOUNT</li>
+                                    <li><a href="{% url 'user' %}">Account Info</a></li>
+                                    <li><a href="{% url 'logoutfunc' %}">Logout</a></li>
+                                {% else %}
+                                    <li class="catr"><span style="color: orangered; font-weight:bold">MY ACCOUNT</li>
+                                    <li><a href="{% url 'registerform' %}">Register</a></li>
+                                    <li><a href="{% url 'loginform' %}">Login</a></li>
+                                {% endif %}
+                                    
+                            </ul>
+                        </div>
+                    </div>
+                </div> 
+                
+                <!-- {% if messages %}
+                    {% for message in messages  %}
+                        <div class="alert alert-success alert-{{message.tags}}" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %} -->
+                    
+            </div>
+            <img src="{% static '' %}images/SHOPCART.png" alt="">
+        </div>
+        <div class="smallacc">
+            <a href="{% url 'user' %}"><i class="fa fa-user" style="position:relative; bottom:6px; color:orange" aria-hidden="true"></i></a>
+            
+            <a href="{% url 'order:shopcart' %}">
+                <i class="fa fa-shopping-cart fe" aria-hidden="true"></i>
+                <div class="cart-count">
+                    {% if itemcount > 0 %}
+                        <span>{{itemcount}}</span>
+                    {% else %}
+                        <span>0</span>
+                    {% endif %}
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="line">
+        <div class="dot">
+            <span>{{profile.bannertext | safe}}</span>
+        </div>
+        <!-- <div class="sci">
+            <i class="fa fa-scissors" aria-hidden="true"></i>
+        </div> -->
+    </div>
+    <div class="euro">
+        <br>
+        <span class="support" style="margin-top: 10px;">{{profile.contact|safe}}</span>
+        <span class="gr">Call charges may apply.</span>
+    </div>
+</div>

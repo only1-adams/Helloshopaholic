@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block ghead %}{% include 'ghead.html' %}{% endblock ghead %}
+<div class="container-fluid">
+    {% block header %}{% include 'header.html' %}{% endblock header %}
+    {% block content %}
+    <div class="container cpd">
+        <div class="catgo">
+            <h6>Product Details</h6>
+        </div>
+    </div>
+    <div class="container spd">
+        <div class="row">
+            <div class="col-lg-3 topres">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product">
+                            
+                            {% if category %}
+                                {% for items in category  %}
+                                    <div class="pro">
+                                        <span><a href="{% url 'prod_list' items.id items.slug %}" style="color: black;""><i class="fa fa-chevron-right" aria-hidden="true"></i>{{items.title}}</a></span>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                                
+                            
+                            <div class="pro">
+                                <span><i class="fa fa-chevron-right" aria-hidden="true"></i>See all Categories</span>
+                            </div>
+                         </div>
+                         
+                    </div>
+                </div>
+                <div class="row stili" >
+                    <div class="col-lg-12 disca">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="dro">
+                                    <h5>50% Discount</h5>
+                                    <span>Only Valid for online order</span> <br>
+                                    <button>Click here</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="upcoming">
+                                    <p style="font-size: 15px; font-weight:bold;">Upcoming Products</p>
+                                    <p>Click to view</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="paypal">
+                            <div>
+                                <img src="{% static '' %}images/paypal.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="pd-hold">
+                            <div class="pdv">
+                                <span><a href="{% url 'index' %}">Home </a> / </span>
+                               <span><a href="{% url 'category' %}">View all Categories </a> / </span>
+                               <span>Preview</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product1" style="margin-top: 20px;">
+                            <div class="row pete">
+                                <div class="col-lg-5">
+                                    <div class="carousel slide" id="semo" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="{{products.image.url}}" alt="">
+                                            </div>
+                                            
+                                            {% if images %}
+                                                {% for items in images  %}
+                                                <div class="carousel-item">
+                                                    <img src="{{items.image.url}}" alt="">
+                                                </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                                
+                                            
+                                             
+                                            <a href="#semo" class="carousel-control-prev" data-slide="prev">
+                                                <span><i class="fa fa-chevron-left fa-4x" aria-hidden="true" style="color: orange;"></i></span>
+                                                
+                                            </a>
+                                
+                                            <a href="#semo" class="carousel-control-next" data-slide="next">
+                                                <span><i class="fa fa-chevron-right fa-4x" aria-hidden="true" style="color: orange;"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="namo">
+                                        <h5>
+                                            {{products.title}}: 
+
+                                            
+                                            {% if products.discount_price %}
+                                                <del>&#8358; {{products.price | floatformat:2 | intcomma}}</del>
+                                                <span>&#8358; {{products.discount_price| floatformat:2 | intcomma}}</span>
+                                            {% else %}
+                                                <span>&#8358; {{products.price| floatformat:2 | intcomma}}</span>
+                                            {% endif %}
+                                                
+                                        </h5>
+                                        <hr>
+                                        <form action="{% url 'order:addtoshopcart' %}" method="POST">
+                                        {% csrf_token %}
+                                            <div class="namput">
+                                                <span>Quantity</span>
+                                                <input type="number" name="quantity" placeholder="Qty" value="1" min="{{products.minquantity}}" max="{{products.quantity_instock"> 
+                                            </div>
+                                            <div class="namp">
+                                                <span>Color:</span>
+                                                <select name="color" id="" style="width: 30%;">
+                                                    <option value="Red">Red</option>
+                                                    <option value="Blue">Blue</option>
+                                                    <option value="Black">Black</option>
+                                                </select>
+                                            </div>
+                                            <h5 style="margin-bottom: 10px;">{{products.quantity_instock}} Items in stock</h5>
+                                            <button type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to Cart</button>
+                                            <input type="hidden" name="prodid" value="{{products.id}}">
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <nav class="nav sete">
+                                        <a href="#details" class="nav-link active" data-toggle="tab">Product Details</a>
+                                    </nav>
+                                    <div class="tab-content csw">
+                                        <div class="tab-pane active" id="details">
+                                            <div class="hodl">
+                                                <h6>Product Information</h6>
+                                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore aliquam, 
+                                                    adipisci nemo omnis hic ut tempora perferendis, doloribus doloremque laboriosam, 
+                                                    reprehenderit vero. Consectetur recusandae consequatur deserunt eum nisi ipsam aspernatur provident, cupiditate est ducimus suscipit necessitatibus asperiores dolorum quae ex excepturi illum. Ratione ducimus, fugiat sit voluptates aliquid eveniet labore velit odio voluptas? Iste ullam tempore veniam. Molestiae adipisci assumenda, eius consequuntur aliquid, 
+                                                    numquam dolore obcaecati, laboriosam minima repudiandae mollitia.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="manu">
+                    <hr>
+                        <h4>Manufacturers</h4>
+                    <hr>
+                    <div class="row damu">
+                        {% if manufacturers %}
+                            {% for items in manufacturers  %}
+                                <div class="col-lg-2">
+                                    <img src="{{items.manufacturers.url}}" alt="">
+                                </div>
+                            {% endfor %}
+                        {% endif %}   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Your Account</h6>
+                                <ul>
+                                    <li><a href="{% url 'user' %}"><span>YOUR ACCOUNT</span></a></li>
+                                    <li><a href="{% url 'userupdate' %}"><span>PERSONAL INFORMATION</span></a></li>
+                                    <li><a href=""><span>ADDRESSES</span></a></li>
+                                    <li><a href=""><span>DISCOUNT</span></a></li>
+                                    <li><a href=""><span>ORDER HISTORY</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Information</h6>
+                                <ul>
+                                    <li><a href="{% url 'contact' %}"><span>CONTACT</span></a></li>
+                                    <li><a href=""><span>SITEMAP</span></a></li>
+                                    <li><a href=""><span>LEGAL NOTICE</span></a></li>
+                                    <li><a href=""><span>TERMS AND CONDITIONS</span></a></li>
+                                    <li><a href=""><span>ABOUT US</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Our Offer</h6>
+                                <ul>
+                                    <li><a href=""><span>NEW PRODUCTS</span></a></li>
+                                    <li><a href=""><span>TOP SELLERS</span></a></li>
+                                    <li><a href=""><span>SPECIALS/span></a></li>
+                                    <li><a href=""><span>MANUFACTURERS</span></a></li>
+                                    <li><a href=""><span>SUPPLIERS</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="foot-hold foot-hold1">
+                                <h6>{{profile.title|safe}}</h6>
+                                <p>
+                                    {{profile.about|safe}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+</div>
+<div class="container-fluid copyfoot1">
+    {% block copyfoot %}{% endblock copyfoot %}
+</div>

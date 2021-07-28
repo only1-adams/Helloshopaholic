@@ -1,0 +1,118 @@
+@media only screen and (max-width:768px){
+    .top{
+        display: none;
+    }
+    .container-fluid{
+        margin: 0px;
+    }
+    section{
+        margin: 0px;
+    }
+    .c1{
+        display: block;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 0px;
+        background-color: white;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .euro{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+        display: none;
+    }
+    .euro span{
+        font-size: 14px;
+        text-align: center;
+        font-weight: bold;
+        margin-left: 7px;
+    }
+    .c2{
+        margin-top: 0px;
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-bottom: 20px;
+        padding-top: 7px;
+        background-color: orangered;
+
+    }
+    .c2 nav{
+        display: none;
+    }
+    .logo{
+        margin-left: 0px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo img{
+        width: 160px;
+        height: 70px;
+        margin-left: 60px;
+    }
+    .line{
+        background-color: orange;
+        border-radius: 5px;
+        padding: 5px;
+        display: none;
+        justify-items: center;
+        align-items: center;
+    }
+    .line:hover{
+        background-color: black;
+    }
+    .dot{
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .dot{
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        border: 2px  dotted  white;
+        padding: 5px;
+    }
+    .dot span{
+        font-size: 12px;
+        color: white;
+        font-weight: bold;
+    }
+    .support{
+        color: white;
+        margin-top: 10px;
+    }
+    .propro{
+        order: 1;
+    }
+    .topres{
+        order: 2;
+    }
+    .sci{
+        position: absolute;
+        left: 85%;
+        bottom: 40%;
+        
+    }
+    .sci i{
+        font-size: 22px;
+        color: white;
+    }
+    .smallacc{
+        display: flex;
+        font-size: 25px;
+        color: orange;
+    }
+    .smallacc i{
+        margin-left: 15px;
+    }
+    .ham{
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,2271 @@
+{% load static %}
+{% load humanize %}
+<div class="container c2">
+    <nav class="nav">
+        <a href="#home" class="nav-link active" style="font-weight: bold;" data-toggle="tab">Home</a>
+        <a href="#list" class="nav-link" style="font-weight: bold;" data-toggle="tab">List View</a>
+        <a href="#grid" class="nav-link" style="font-weight: bold;" data-toggle="tab">Grid View</a>
+        <a href="#three" class="nav-link" style="font-weight: bold;" data-toggle="tab">Three Column</a>
+        <a href="#four" class="nav-link" style="font-weight: bold;" data-toggle="tab">Four Column</a>
+        <a href="#gen" class="nav-link" style="font-weight: bold;" data-toggle="tab">General Content</a>
+        <input type="search" name="search" id="" placeholder="Search">
+        
+        {% if user.id is not None %}
+            <a href="{% url 'logoutfunc' %}"" class="nav-link" style="font-weight: bold;">Logout</a>
+        {% else %}
+            <div class="dropdown">
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" style="font-weight: bold;">
+                    <i class="fa fa-lock" aria-hidden="true"></i> Login
+                </button>
+                <div class="dropdown-menu">
+                    <div class="dropdown-item">
+                        <form action="{% url 'loginform' %}" id="LoginForm" method="POST">
+                        {% csrf_token %}
+                            <div>
+                                <input type="text" placeholder="Username" name="username" class="re">
+                            </div>
+                            <div>
+                                <input type="password" placeholder="Password" name="password" class="re"> <br>
+                                <input type="checkbox"> <span style="font-size: 13px;">Remember me</span>
+                            </div>
+                            <div>
+                                <button type="submit" class="bravo">Sign in</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+            
+    </nav>
+    <div class="tab-content">
+        <div class="tab-pane active" id="home">
+            <div class="row">
+                <div class="col-lg-3 topres">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product">
+                                
+                                {% if category %}
+                                    {% for items in category  %}
+                                        <div class="pro">
+                                            <span><a href="{% url 'prod_list' items.id items.slug %}" style="color: black;"><i class="fa fa-chevron-right" aria-hidden="true"></i>{{items.title}}</a></span>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                    
+                                
+                                <div class="pro">
+                                    <span><a href="{% url 'category' %}" style="color: black;"><i class="fa fa-chevron-right" aria-hidden="true"></i>See all Categories</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 disca">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="dro">
+                                        <h5>50% Discount</h5>
+                                        <span>Only Valid for online order</span> <br>
+                                        <button>Click here</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="upcoming">
+                                        <p style="font-size: 15px; font-weight:bold;">Upcoming Products</p>
+                                        <p>Click to view</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="paypal">
+                                <div>
+                                    <img src="images/paypal.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 cara" style="margin-top: 0px;">
+                            {% if upcoming %}
+                                {% for items in upcoming  %}
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card cardo">
+                                                <div class="card-img">
+                                                    <img src="{{items.image.url}}" alt="" style="margin-left: 5px;" height="270px" width="200px">
+                                                </div>
+                                                <div class="card-block">
+                                                    <div class="add add1">
+                                                        <span class="vi">VIEW</span>
+                                                        <span style="font-weight: bold; font-size:15px">
+                                                            <span>&#8358; {{items.price| floatformat:2 | intcomma}}</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="overlay">
+                                                    <div class="text">
+                                                        <span><i class="fa fa-search" aria-hidden="true"></i> PRE ORDER</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                                
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 propro">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="carousel slide" id="demo" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="{{carousel_a.image.url}}" alt="">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{carousel_b.image.url}}" alt="">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{carousel_c.image.url}}" alt="">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{carousel_d.image.url}}" alt="">
+                                    </div>
+                                    <a href="#demo" class="carousel-control-prev" data-slide="prev">
+                                        <span><i class="fa fa-chevron-left fa-4x" aria-hidden="true" style="color: orange;"></i></span>
+                                        
+                                    </a>
+                        
+                                    <a href="#demo" class="carousel-control-next" data-slide="next">
+                                        <span><i class="fa fa-chevron-right fa-4x" aria-hidden="true" style="color: orange;"></i></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product1">
+                                <div class="new">
+                                    <h3>New Products</h3>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="carousel slide" id="remo" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div class="row caro">
+                                                    
+                                                    {% if new_prod_slide %}
+                                                        {% for items in new_prod_slide  %}
+                                                            <div class="col-lg-3 col-sm-6">
+                                                                <div class="card carda">
+                                                                    <img src="{{items.image.url}}" alt="">
+                                                                    <div class="card-img cd">
+                                                                        <img src="{% static '' %}images/new.png" alt="">
+                                                                    </div>
+                                                                    <div class="overlay">
+                                                                        <div class="text">
+                                                                            <span><a href="{% url 'prod_detail' items.id items.slug %}"><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</a></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                        
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="row caro">
+                                                    {% if new_prod_slidea %}
+                                                        {% for items in new_prod_slidea  %}
+                                                            <div class="col-lg-3 col-sm-6">
+                                                                <div class="card carda">
+                                                                    <img src="{{items.image.url}}" alt="">
+                                                                    <div class="card-img cd">
+                                                                        <img src="{% static '' %}images/new.png" alt="">
+                                                                    </div>
+                                                                    <div class="overlay">
+                                                                        <div class="text">
+                                                                            <span><a href="{% url 'prod_detail' items.id items.slug %}"><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</a></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="direct">
+                                                <a href="#remo" class="carousel-control-prev" data-slide="prev">
+                                                    <div>
+                                                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="#remo" class="carousel-control-next" data-slide="next">
+                                                    <div>
+                                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row prores">
+                                    
+                                    {% if new_prod %}
+                                        {% for items in new_prod  %}
+                                            
+                                            <div class="col-lg-4 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-img carimg">
+                                                        <img src="{{items.image.url}}" alt="" height="270px" width="200px">
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <span style="font-size: 13px;">{{items.title}}</span> <br>
+                                                        <span style="font-weight: bold; font-size:12px">
+                                                                <del>&#8358; {{items.price | floatformat:2 | intcomma}}</del>
+                                                                <span>&#8358; {{items.discount_price| floatformat:2 | intcomma}}</span>
+                                                        </span> <br>
+                                                        <!-- <div class="add">
+                                                            <span>Add to Wishlist</span>
+                                                            <span>Add to Compare</span>
+                                                        </div> -->
+                                                    </div>
+                                                    <div class="overlay">
+                                                        <div class="text">
+                                                            <span><a href="{% url 'prod_detail' items.id items.slug %}"><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</a></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="product1 pb">
+                                    <div class="new">
+                                        <h3>Featured Products</h3>
+                                        <div class="view">
+                                            <span>View More <i class="fa fa-plus" aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="row feres">
+                                        
+                                        {% if featured %}
+                                            {% for items in featured  %}
+                                                <div class="col-lg-4 col-sm-6">
+                                                    <div class="card">
+                                                        <div class="card-img">
+                                                            <img src="{{items.image.url}}" alt="" height="270px" width="200px">
+                                                        </div>
+                                                        <div class="card-block">
+                                                            <span style="font-size: 13px; font-weight:bold;">{{items.title}}</span> <br>
+                                                            <div class="zoom">
+                                                                <div class="zoom1">
+                                                                    <div class="plus" style="width: 20px; height:20px">
+                                                                        <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                                                    </div>
+                                                                    <div class="plus1" style="width: 20px; height:20px">
+                                                                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <span style="font-weight: bold; font-size:10px">
+                                                                        <del>&#8358; {{items.price | floatformat:2 | intcomma}}</del>
+                                                                        <span>&#8358; {{items.discount_price| floatformat:2 | intcomma}}</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="overlay">
+                                                            <div class="text">
+                                                                <span><a href="{% url 'prod_detail' items.id items.slug %}"><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</a></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product1 product2">
+                                <div class="new">
+                                    <h3>Popular Products</h3>
+                                    <div class="view">
+                                        <span>View More <i class="fa fa-plus" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                                <div class="row peres">
+                                    
+                                    {% if popular %}
+                                        {% for items in popular  %}
+                                            <div class="col-lg-4">
+                                                <div class="card">
+                                                    <div class="card-img">
+                                                        <img src="{{items.image.url}}" alt="" height="270px" width="200px">
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <span style="font-size: 13px; font-weight:bold;">{{items.title}}</span> <br>
+                                                        <div class="zoom">
+                                                            <div class="zoom1">
+                                                                <div class="plus" style="width: 20px; height:20px">
+                                                                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                                                </div>
+                                                                <div class="plus1" style="width: 20px; height:20px">
+                                                                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <span style="font-weight: bold; font-size:10px">
+                                                                    <del>&#8358; {{items.price | floatformat:2 | intcomma}}</del>
+                                                                    <span>&#8358; {{items.discount_price| floatformat:2 | intcomma}}</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="overlay">
+                                                        <div class="text">
+                                                            <span><a href="{% url 'prod_detail' items.id items.slug %}"><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</a></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product1 product2">
+                                <div class="new">
+                                    <h3>Best Selling Products</h3>
+                                    <div class="view">
+                                        <span>View More <i class="fa fa-plus" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                                <div class="row peres">
+                                    
+                                    {% if bestselling %}
+                                        {% for items in bestselling  %}
+                                            <div class="col-lg-4">
+                                                <div class="card">
+                                                    <div class="card-img">
+                                                        <img src="{{items.image.url}}" alt="" height="270px" width="200px">
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <span style="font-size: 13px; font-weight:bold;">{{items.title}}</span> <br>
+                                                        <div class="zoom">
+                                                            <div class="zoom1">
+                                                                <div class="plus" style="width: 20px; height:20px">
+                                                                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                                                </div>
+                                                                <div class="plus1" style="width: 20px; height:20px">
+                                                                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <span style="font-weight: bold; font-size:10px">
+                                                                    <del>&#8358; {{items.price | floatformat:2 | intcomma}}</del>
+                                                                    <span>&#8358; {{items.discount_price| floatformat:2 | intcomma}}</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="overlay">
+                                                        <div class="text">
+                                                            <span><a href="{% url 'prod_detail' items.id items.slug %}"><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</a></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="manu">
+                        <hr>
+                            <h4>Manufacturers</h4>
+                        <hr>
+                       <div class="row damu">
+                            
+                            {% if manufacturers %}
+                                {% for items in manufacturers  %}
+                                    <div class="col-lg-2">
+                                        <img src="{{items.manufacturers.url}}" alt="">
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                                
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Your Account</h6>
+                                    <ul>
+                                    <li><a href="{% url 'user' %}"><span>YOUR ACCOUNT</span></a></li>
+                                        <li><a href="{% url 'userupdate' %}"><span>PERSONAL INFORMATION</span></a></li>
+                                        <li><a href=""><span>ADDRESSES</span></a></li>
+                                        <li><a href=""><span>DISCOUNT</span></a></li>
+                                        <li><a href=""><span>ORDER HISTORY</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Information</h6>
+                                    <ul>
+                                        <li><a href=""><span>CONTACT</span></a></li>
+                                        <li><a href=""><span>SITEMAP</span></a></li>
+                                        <li><a href=""><span>LEGAL NOTICE</span></a></li>
+                                        <li><a href=""><span>TERMS AND CONDITIONS</span></a></li>
+                                        <li><a href=""><span>ABOUT US</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Our Offer</h6>
+                                    <ul>
+                                        <li><a href=""><span>NEW PRODUCTS</span></a></li>
+                                        <li><a href=""><span>TOP SELLERS</span></a></li>
+                                        <li><a href=""><span>SPECIALS/span></a></li>
+                                        <li><a href=""><span>MANUFACTURERS</span></a></li>
+                                        <li><a href=""><span>SUPPLIERS</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="foot-hold foot-hold1">
+                                    <h6>{{profile.title|safe}}</h6>
+                                    <p>
+                                        {{profile.about|safe}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="tab-pane" id="list">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product">
+                                <div class="pro">
+                                    <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Fashion</span>
+                                </div>
+                                <div class="pro">
+                                     <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Watches</span>
+                                 </div>
+                                 <div class="pro">
+                                     <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Fine Jewelry</span>
+                                 </div>
+                                 <div class="pro">
+                                     <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Fashion Jewelry</span>
+                                 </div>
+                                 <div class="pro">
+                                     <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Engagement and Wedding</span>
+                                 </div>
+                                 <div class="pro">
+                                     <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Men's Jewelry</span>
+                                 </div>
+                                 <div class="pro">
+                                     <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Vintage & Antique</span>
+                                 </div>
+                                 <div class="pro">
+                                     <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Loose Diamonds</span>
+                                 </div>
+                                 <div class="pro">
+                                     <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Loose Beads</span>
+                                 </div>
+                                 <div class="pro">
+                                     <span><i class="fa fa-chevron-right" aria-hidden="true"></i>See all Jewelry & Watches</span>
+                                 </div>
+                                 <div class="pro amount">
+                                     <span>Total Amount</span>
+                                     <span class="small">$448.42</span>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="dro">
+                                <h5>50% Discount</h5>
+                                <span>Only Valid for online order</span> <br>
+                                <button>Click here</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="paypal">
+                                <div>
+                                    <img src="images/paypal.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="upcoming">
+                                <p style="font-size: 15px; font-weight:bold;">Upcoming Products</p>
+                                <p>Click to view</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card cardo">
+                                <div class="card-img">
+                                    <img src="images/shopping-cart-template.PNG" alt="" height="270px" width="200px">
+                                </div>
+                                <div class="card-block">
+                                    <div class="add add1">
+                                        <span class="vi">VIEW</span>
+                                        <span>$22.00</span>
+                                    </div>
+                                </div>
+                                <div class="overlay">
+                                    <div class="text">
+                                        <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card cardo">
+                                <div class="card-img">
+                                    <img src="images/shopping-cart-template.PNG" alt="" height="270px" width="200px">
+                                </div>
+                                <div class="card-block">
+                                    <div class="add add1">
+                                        <span class="vi">VIEW</span>
+                                        <span>$22.00</span>
+                                    </div>
+                                </div>
+                                <div class="overlay">
+                                    <div class="text">
+                                        <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card cardo">
+                                <div class="card-img">
+                                    <img src="images/shopping-cart-template.PNG" alt="" height="270px" width="200px">
+                                </div>
+                                <div class="card-block">
+                                    <div class="add add1">
+                                        <span class="vi">VIEW</span>
+                                        <span>$22.00</span>
+                                    </div>
+                                </div>
+                                <div class="overlay">
+                                    <div class="text">
+                                        <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card cardo">
+                                <div class="card-img">
+                                    <img src="images/shopping-cart-template.PNG" alt="" height="270px" width="200px">
+                                </div>
+                                <div class="card-block">
+                                    <div class="add add1">
+                                        <span class="vi">VIEW</span>
+                                        <span>$22.00</span>
+                                    </div>
+                                </div>
+                                <div class="overlay">
+                                    <div class="text">
+                                        <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 kaka">
+                    <div class="product1">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="imhold">
+                                    <img src="images/a.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="phold">
+                                    <div>
+                                        <h6>Product Name</h6>
+                                        <p>
+                                            Nowadays the lingerie industry is one of the most successful business spheres. 
+                                            We always stay in touch with the latest fashion tendencies - 
+                                            that is why our goods are so popular..
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" name="" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="prihold">
+                                    <div>
+                                        <span style="font-weight: bold;">$140.00</span> <br>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 14px;">Adds Product to compare</span> <br>
+                                    </div>
+                                    <div>
+                                        <button class="addo"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                                        <button class="viewo">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="manu">
+                        <hr>
+                            <h4>Manufacturers</h4>
+                        <hr>
+                       <div class="row">
+                            <div class="col-lg-2">
+                                <img src="images/1.png" alt="">
+                            </div>
+                            <div class="col-lg-2">
+                                <img src="images/2.png" alt="">
+                            </div>
+                            <div class="col-lg-2">
+                                <img src="images/3.png" alt="">
+                            </div>
+                            <div class="col-lg-2">
+                                <img src="images/4.png" alt="">
+                            </div>
+                            <div class="col-lg-2">
+                                <img src="images/5.png" alt="">
+                            </div>
+                            <div class="col-lg-2">
+                                <img src="images/6.png" alt="">
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Your Account</h6>
+                                    <a href=""><span>YOUR ACCOUNT</span></a>
+                                    <a href=""><span>PERSONAL INFORMATION</span></a>
+                                    <a href=""><span>ADDRESSES</span></a>
+                                    <a href=""><span>DISCOUNT</span></a> <br>
+                                    <a href=""><span>ORDER HISTORY</span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Information</h6>
+                                    <a href=""><span>CONTACT</span></a> <br>
+                                    <a href=""><span>SITEMAP</span></a> <br>
+                                    <a href=""><span>LEGAL NOTICE</span></a> <br>
+                                    <a href=""><span>TERMS AND CONDITIONS</span></a> <br>
+                                    <a href=""><span>ABOUT US</span></a> <br>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Our Offer</h6>
+                                    <a href=""><span>NEW PRODUCTS</span></a> <br>
+                                    <a href=""><span>TOP SELLERS</span></a> <br>
+                                    <a href=""><span>SPECIALS</span></a> <br>
+                                    <a href=""><span>MANUFACTURERS</span></a> <br>
+                                    <a href=""><span>SUPPLIERS</span></a> <br>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="foot-hold foot-hold1">
+                                    <h6>The Standard Chunk of Lorem</h6>
+                                    <p>
+                                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
+                                        Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
+                                        their exact original form,
+                                        accompanied by English versions from the 1914 translation by H. Rackham.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="tab-pane" id="grid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product">
+                       <div class="pro">
+                           <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Fashion</span>
+                       </div>
+                       <div class="pro">
+                            <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Watches</span>
+                        </div>
+                        <div class="pro">
+                            <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Fine Jewelry</span>
+                        </div>
+                        <div class="pro">
+                            <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Fashion Jewelry</span>
+                        </div>
+                        <div class="pro">
+                            <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Engagement and Wedding</span>
+                        </div>
+                        <div class="pro">
+                            <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Men's Jewelry</span>
+                        </div>
+                        <div class="pro">
+                            <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Vintage & Antique</span>
+                        </div>
+                        <div class="pro">
+                            <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Loose Diamonds</span>
+                        </div>
+                        <div class="pro">
+                            <span><i class="fa fa-chevron-right" aria-hidden="true"></i>Loose Beads</span>
+                        </div>
+                        <div class="pro">
+                            <span><i class="fa fa-chevron-right" aria-hidden="true"></i>See all Jewelry & Watches</span>
+                        </div>
+                        <div class="pro amount">
+                            <span>Total Amount</span>
+                            <span class="small">$448.42</span>
+                        </div>
+                    </div>
+                    <div class="dro">
+                        <h5>50% Discount</h5>
+                        <span>Only Valid for online order</span> <br>
+                        <button>Click here</button>
+                    </div>
+                    <div class="paypal">
+                        <div>
+                            <img src="images/paypal.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="upcoming">
+                        <p style="font-size: 15px; font-weight:bold;">Upcoming Products</p>
+                        <p>Click to view</p>
+                    </div>
+                    <div class="card cardo">
+                        <div class="card-img">
+                            <img src="images/bootstrap-ecommerce-templates.PNG" alt="" height="270px" width="200px">
+                        </div>
+                        <div class="card-block">
+                            <div class="add add1">
+                                <span class="vi">VIEW</span>
+                                <span>$22.00</span>
+                            </div>
+                        </div>
+                        <div class="overlay">
+                            <div class="text">
+                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card cardo">
+                        <div class="card-img">
+                            <img src="images/shopping-cart-template.PNG" alt="" height="270px" width="200px">
+                        </div>
+                        <div class="card-block">
+                            <div class="add add1">
+                                <span class="vi">VIEW</span>
+                                <span>$22.00</span>
+                            </div>
+                        </div>
+                        <div class="overlay">
+                            <div class="text">
+                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card cardo">
+                        <div class="card-img">
+                            <img src="images/bootstrap-template.png" alt="" height="270px" width="200px">
+                        </div>
+                        <div class="card-block">
+                            <div class="add add1">
+                                <span class="vi">VIEW</span>
+                                <span>$22.00</span>
+                            </div>
+                        </div>
+                        <div class="overlay">
+                            <div class="text">
+                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-lg-9">
+                    <div class="product1">
+                        <h3>Our Products</h3> 
+                        <div class="pic">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <img src="images/a.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <img src="images/b.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <img src="images/c.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="card card1">
+                                        <div class="card-img">
+                                            <img src="images/d.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card card1">
+                                        <div class="card-img">
+                                            <img src="images/e.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card card1">
+                                        <div class="card-img">
+                                            <img src="images/f.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="card card1">
+                                        <div class="card-img">
+                                            <img src="images/g.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card card1">
+                                        <div class="card-img">
+                                            <img src="images/h.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card card1">
+                                        <div class="card-img">
+                                            <img src="images/i.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <img src="images/a.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <img src="images/b.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <img src="images/c.jpg" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                            <span style="font-weight: bold;">$22.00</span> <br>
+                                            <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="manu">
+                        <hr>
+                            <h4>Manufacturers</h4>
+                        <hr>
+                       <div class="row">
+                            <div class="col-lg-2">
+                                <img src="images/1.png" alt="">
+                            </div>
+                            <div class="col-lg-2">
+                                <img src="images/2.png" alt="">
+                            </div>
+                            <div class="col-lg-2">
+                                <img src="images/3.png" alt="">
+                            </div>
+                            <div class="col-lg-2">
+                                <img src="images/4.png" alt="">
+                            </div>
+                            <div class="col-lg-2">
+                                <img src="images/5.png" alt="">
+                            </div>
+                            <div class="col-lg-2">
+                                <img src="images/6.png" alt="">
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Your Account</h6>
+                                    <a href=""><span>YOUR ACCOUNT</span></a>
+                                    <a href=""><span>PERSONAL INFORMATION</span></a>
+                                    <a href=""><span>ADDRESSES</span></a>
+                                    <a href=""><span>DISCOUNT</span></a> <br>
+                                    <a href=""><span>ORDER HISTORY</span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Information</h6>
+                                    <a href=""><span>CONTACT</span></a> <br>
+                                    <a href=""><span>SITEMAP</span></a> <br>
+                                    <a href=""><span>LEGAL NOTICE</span></a> <br>
+                                    <a href=""><span>TERMS AND CONDITIONS</span></a> <br>
+                                    <a href=""><span>ABOUT US</span></a> <br>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Our Offer</h6>
+                                    <a href=""><span>NEW PRODUCTS</span></a> <br>
+                                    <a href=""><span>TOP SELLERS</span></a> <br>
+                                    <a href=""><span>SPECIALS</span></a> <br>
+                                    <a href=""><span>MANUFACTURERS</span></a> <br>
+                                    <a href=""><span>SUPPLIERS</span></a> <br>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="foot-hold foot-hold1">
+                                    <h6>The Standard Chunk of Lorem</h6>
+                                    <p>
+                                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
+                                        Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
+                                        their exact original form,
+                                        accompanied by English versions from the 1914 translation by H. Rackham.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="three">
+            <div class="three-hold">
+                <h6>Three Colum Product View</h6>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="manu">
+                            <hr>
+                                <h4>Manufacturers</h4>
+                            <hr>
+                           <div class="row">
+                                <div class="col-lg-2">
+                                    <img src="images/1.png" alt="">
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="images/2.png" alt="">
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="images/3.png" alt="">
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="images/4.png" alt="">
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="images/5.png" alt="">
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="images/6.png" alt="">
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="foot-hold">
+                                        <h6>Your Account</h6>
+                                        <a href=""><span>YOUR ACCOUNT</span></a>
+                                        <a href=""><span>PERSONAL INFORMATION</span></a>
+                                        <a href=""><span>ADDRESSES</span></a>
+                                        <a href=""><span>DISCOUNT</span></a> <br>
+                                        <a href=""><span>ORDER HISTORY</span></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="foot-hold">
+                                        <h6>Information</h6>
+                                        <a href=""><span>CONTACT</span></a> <br>
+                                        <a href=""><span>SITEMAP</span></a> <br>
+                                        <a href=""><span>LEGAL NOTICE</span></a> <br>
+                                        <a href=""><span>TERMS AND CONDITIONS</span></a> <br>
+                                        <a href=""><span>ABOUT US</span></a> <br>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="foot-hold">
+                                        <h6>Our Offer</h6>
+                                        <a href=""><span>NEW PRODUCTS</span></a> <br>
+                                        <a href=""><span>TOP SELLERS</span></a> <br>
+                                        <a href=""><span>SPECIALS</span></a> <br>
+                                        <a href=""><span>MANUFACTURERS</span></a> <br>
+                                        <a href=""><span>SUPPLIERS</span></a> <br>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="foot-hold foot-hold1">
+                                        <h6>The Standard Chunk of Lorem</h6>
+                                        <p>
+                                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
+                                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
+                                            their exact original form,
+                                            accompanied by English versions from the 1914 translation by H. Rackham.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="four">
+            <div class="four-hold">
+                <h6>Four Column Product view</h6>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="images/b.jpg" alt="" height="270px" width="200px">
+                            </div>
+                            <div class="card-block">
+                                <span style="font-size: 13px;">Manicure & Pedicure</span> <br>
+                                <span style="font-weight: bold;">$22.00</span> <br>
+                                <button>Add to Cart</button>
+                                <div class="add">
+                                    <span>Add to Wishlist</span>
+                                    <span>Add to Compare</span>
+                                </div>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <span><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="manu">
+                            <hr>
+                                <h4>Manufacturers</h4>
+                            <hr>
+                           <div class="row samu">
+                                <div class="col-lg-2">
+                                    <img src="images/1.png" alt="">
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="images/2.png" alt="">
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="images/3.png" alt="">
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="images/4.png" alt="">
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="images/5.png" alt="">
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="images/6.png" alt="">
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="foot-hold">
+                                        <h6>Your Account</h6>
+                                        <ul>
+                                            <li><a href=""><span>YOUR ACCOUNT</span></a></li>
+                                            <li><a href=""><span>PERSONAL INFORMATION</span></a></li>
+                                            <li><a href=""><span>ADDRESSES</span></a></li>
+                                            <li><a href=""><span>DISCOUNT</span></a></li>
+                                            <li><a href=""><span>ORDER HISTORY</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="foot-hold">
+                                        <h6>Information</h6>
+                                        <ul>
+                                            <li><a href=""><span>CONTACT</span></a></li>
+                                            <li><a href=""><span>SITEMAP</span></a></li>
+                                            <li><a href=""><span>LEGAL NOTICE</span></a></li>
+                                            <li><a href=""><span>TERMS AND CONDITIONS</span></a></li>
+                                            <li><a href=""><span>ABOUT US</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="foot-hold">
+                                        <h6>Our Offer</h6>
+                                        <ul>
+                                            <li><a href=""><span>NEW PRODUCTS</span></a></li>
+                                            <li><a href=""><span>TOP SELLERS</span></a></li>
+                                            <li><a href=""><span>SPECIALS/span></a></li>
+                                            <li><a href=""><span>MANUFACTURERS</span></a></li>
+                                            <li><a href=""><span>SUPPLIERS</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="foot-hold foot-hold1">
+                                        <h6>The Standard Chunk of Lorem</h6>
+                                        <p>
+                                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
+                                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
+                                            their exact original form,
+                                            accompanied by English versions from the 1914 translation by H. Rackham.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

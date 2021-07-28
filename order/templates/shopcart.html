@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+
+{% block ghead %}{% include "acheader.html" %}{% endblock ghead %}
+<div class="container-fluid">
+    {% block header %}{% include "header.html" %}{% endblock header %}
+    {% block content %}
+        <div class="container cpd dfd">
+            <div class="catgo">
+                <h6>SHOP CART</h6>
+            </div>
+        </div>
+        <div class="container spd">
+            <div class="row tabur">
+                <div class="col-lg-12 tabu">
+                    <div class="tab-hold">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>IMAGE</th>
+                                <th>PRODUCT</th>
+                                <th>PRICE</th>
+                                <th>COLOR</th>
+                                <th>QUANTITY</th>
+                                <th>TOTAL</th>
+                            </tr>
+
+                            
+                            {% if shopcart %}
+                                {% for items in shopcart  %}
+                                    <tr>
+                                        <td>
+                                            <div class="cartimg">
+                                                <img src="{{items.product.image.url}}" alt="">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p style="font-weight: bold;">{{items.product.title}}</p>
+                                        </td>
+                                        <td>
+                                            <p style="font-weight: bold;">
+                                                {% if items.product.discount_price %}
+                                                    {{items.product.discount_price | floatformat:2 | intcomma}}
+                                                {% else %}
+                                                    {{items.product.price | floatformat:2 | intcomma}}
+                                                {% endif %}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p style="font-weight: bold;">{{items.color}}</p>
+                                        </td>
+                                        <td>
+                                            <div class="fleco">
+                                                <a href="{% url 'order:deletefromcart' items.id %}">Remove </a>
+                                                <form action="{% url 'order:updatequantity' %}" method="POST">
+                                                {% csrf_token %}
+                                                    <div>
+                                                        <p style="font-weight: bold;"> <input type="number" id="items" name="itemquan" placeholder="Qty" style="width: 40px;" value="{{items.quantity}}" min="{{items.product.minquantity}}" max="{{items.product.quantity_instock}}"></p>
+                                                    </div>
+                                                    <div class="updateprice">
+                                                        <button class="btu" type="submit">UPDATE QUANTITY</button>
+                                                    </div>
+                                                    <input type="hidden" name="itemid" value="{{items.id}}">
+                                                </form>
+                                                
+                                            </div>
+                                        </td>
+                                        <td><p style="font-weight: bold;">{{items.total}}</p></td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                                
+                        </table>
+                    </div>
+                    <div class="total-price">
+                        <table>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td>&#8358; {{Subtotal | floatformat:2 | intcomma}}</td>
+                            </tr>
+                            <tr>
+                                <td>Shipping Fee</td>
+                                <td>&#8358; {{Shipping | floatformat:2 | intcomma}}</td>
+                            </tr>
+                            <tr>
+                                <td>VAT (8.50%)</td>
+                                <td>&#8358; {{vat | floatformat:2 | intcomma}}</td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td>&#8358; {{total | floatformat:2 | intcomma}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="tota-price">
+                        <table>
+                            <tr>
+                                <td><button type="submit"><a href="{% url 'category' %}">Continue</a></button></td>
+                                <td><button type="submit"><a href="{% url 'order:checkout' %}">Checkout</a></button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="manu">
+                        <hr>
+                            <h4>Manufacturers</h4>
+                        <hr>
+                    <div class="row damu">
+                        
+                        {% if manufacturers %}
+                            {% for items in manufacturers  %}
+                        
+                                <div class="col-lg-2">
+                                    <img src="{{items.manufacturers.url}}" alt="">
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                                
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Your Account</h6>
+                                    <ul>
+                                        <li><a href="{% url 'user' %}"><span>YOUR ACCOUNT</span></a></li>
+                                        <li><a href="{% url 'userupdate' %}"><span>PERSONAL INFORMATION</span></a></li>
+                                        <li><a href=""><span>ADDRESSES</span></a></li>
+                                        <li><a href=""><span>DISCOUNT</span></a></li>
+                                        <li><a href=""><span>ORDER HISTORY</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Information</h6>
+                                    <ul>
+                                        <li><a href="{% url 'contact' %}"><span>CONTACT</span></a></li>
+                                        <li><a href=""><span>SITEMAP</span></a></li>
+                                        <li><a href=""><span>LEGAL NOTICE</span></a></li>
+                                        <li><a href=""><span>TERMS AND CONDITIONS</span></a></li>
+                                        <li><a href=""><span>ABOUT US</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="foot-hold">
+                                    <h6>Our Offer</h6>
+                                    <ul>
+                                        <li><a href=""><span>NEW PRODUCTS</span></a></li>
+                                        <li><a href=""><span>TOP SELLERS</span></a></li>
+                                        <li><a href=""><span>SPECIALS/span></a></li>
+                                        <li><a href=""><span>MANUFACTURERS</span></a></li>
+                                        <li><a href=""><span>SUPPLIERS</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="foot-hold foot-hold1">
+                                    <h6>{{profile.title|safe}}</h6>
+                                    <p>
+                                        {{profile.about|safe}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock content %}
+</div>
+<div class="container-fluid copyfoot1">
+    {% block copyfoot %}{% include "copyfoot.html" %}{% endblock copyfoot %}
+</div>

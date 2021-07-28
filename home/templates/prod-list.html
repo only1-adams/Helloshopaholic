@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block ghead %}{% include 'ghead.html' %}{% endblock ghead %}
+<div class="container-fluid">
+    {% block header %}{% include 'header.html' %}{% endblock header %}
+    {% block content %}
+    <div class="container cpd">
+        <div class="catgo">
+            <h6>ALL PRODUCTS</h6>
+        </div>
+    </div>
+    <div class="container spd">
+        <div class="row listpo">
+            <div class="col-lg-3 topres">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product">
+                            {% if category %}
+                                {% for items in category  %}
+                                    <div class="pro">
+                                        <span><a href="{% url 'prod_list' items.id items.slug %}" style="color: black;"><i class="fa fa-chevron-right" aria-hidden="true"></i>{{items.title}}</a></span>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            <div class="pro">
+                                <span><a href="{%url 'category' %}"><i class="fa fa-chevron-right" aria-hidden="true"></i>See all Categories</a></span>
+                            </div>
+                        </div>
+                         
+                    </div>
+                </div>
+                <div class="row stili" >
+                    <div class="col-lg-12 disca">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="dro">
+                                    <h5>50% Discount</h5>
+                                    <span>Only Valid for online order</span> <br>
+                                    <button>Click here</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="upcoming">
+                                    <p style="font-size: 15px; font-weight:bold;">Upcoming Products</p>
+                                    <p>Click to view</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="paypal">
+                            <div>
+                                <img src="{% static '' %}images/paypal.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="product1">
+                    <div class="row ristpo">
+                        
+                        {% if product %}
+                            {% for items in product  %}
+                                <div class="col-lg-4 ">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <img src="{{items.image.url}}" alt="" height="270px" width="200px">
+                                        </div>
+                                        <div class="card-block">
+                                            <span style="font-size: 13px;">{{items.title}}</span> <br>
+                                            <span style="font-weight: bold; font-size:12px">
+                                                <del>&#8358; {{items.price | floatformat:2 | intcomma}}</del>
+                                                <span>&#8358; {{items.discount_price| floatformat:2 | intcomma}}</span>
+                                            </span> <br>
+                                            <!-- <button>Add to Cart</button>
+                                            <div class="add">
+                                                <span>Add to Wishlist</span>
+                                                <span>Add to Compare</span>
+                                            </div> -->
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">
+                                                <span><a href="{% url 'prod_detail' items.id items.slug %}"><i class="fa fa-search" aria-hidden="true"></i> QUICK VIEW</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="manu">
+                    <hr>
+                        <h4>Manufacturers</h4>
+                    <hr>
+                   <div class="row damu">
+                        
+                        {% if manufacturers %}
+                            {% for items in manufacturers %}
+                                <div class="col-lg-2">
+                                    <img src="{{items.manufacturers.url}}" alt="">
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                            
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Your Account</h6>
+                                <ul>
+                                    <li><a href="{% url 'user' %}"><span>YOUR ACCOUNT</span></a></li>
+                                    <li><a href="{% url 'userupdate' %}"><span>PERSONAL INFORMATION</span></a></li>
+                                    <li><a href=""><span>ADDRESSES</span></a></li>
+                                    <li><a href=""><span>DISCOUNT</span></a></li>
+                                    <li><a href=""><span>ORDER HISTORY</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Information</h6>
+                                <ul>
+                                    <li><a href="{% url 'contact' %}"><span>CONTACT</span></a></li>
+                                    <li><a href=""><span>SITEMAP</span></a></li>
+                                    <li><a href=""><span>LEGAL NOTICE</span></a></li>
+                                    <li><a href=""><span>TERMS AND CONDITIONS</span></a></li>
+                                    <li><a href=""><span>ABOUT US</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Our Offer</h6>
+                                <ul>
+                                    <li><a href=""><span>NEW PRODUCTS</span></a></li>
+                                    <li><a href=""><span>TOP SELLERS</span></a></li>
+                                    <li><a href=""><span>SPECIALS/span></a></li>
+                                    <li><a href=""><span>MANUFACTURERS</span></a></li>
+                                    <li><a href=""><span>SUPPLIERS</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="foot-hold foot-hold1">
+                                <h6>The Standard Chunk of Lorem</h6>
+                                <p>
+                                    {{profile.about|safe}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+</div>
+<div class="container-fluid copyfoot1">
+    {% block copyfoot %}{% include "copyfoot.html" %}{% endblock copyfoot %}
+</div>

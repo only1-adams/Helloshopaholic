@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+
+{% block ghead %}{% include "acheader.html" %}{% endblock ghead %}
+<div class="container-fluid">
+    {% block header %}{% include "header.html" %}{% endblock header %}
+    {% block content %}
+    <div class="container cpd dfd">
+        <div class="catgo">
+            <h6>CHECKOUT</h6>
+        </div>
+    </div>
+    <div class="container spd">
+        <div class="row tabur">
+            <div class="col-lg-12" style="background-color: white;">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="wrapper">
+                            <h6><strong>Order Details</strong></h6>
+                            <hr>
+                            <form action="{% url 'order:placeorder' %}" method="POST">
+                            {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="input-box">
+                                        <input type="text" required value="{{profile.first_name}}" class="name" placeholder="First Name" name="first_name">
+                                        <div class="fo"><i class="fa fa-user icon"></i></div>
+                                    </div>
+                                    <div class="input-box">
+                                        <input type="text" required value="{{profile.last_name}}"  class="name" placeholder="Last Name" name="last_name">
+                                        <div class="fo fo1"><i class="fa fa-user icon"></i></div>
+                                    </div> 
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-box">
+                                        <input type="email" required value="{{profile.email}}" class="name" placeholder="E-mail" name="email">
+                                        <div class="fo fo2"><i class="fa fa-envelope icon"></i></div>
+                                    </div> 
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-box">
+                                        <input type="phone" required value="{{profile.phone}}" class="name" placeholder="Phone Number" name="phone">
+                                        <div class="fo fo2"><i class="fa fa-mobile icon"  aria-hidden="true"></i></div>
+                                    </div> 
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-box">
+                                        <input type="text" required value="{{profile.address}}" class="name" placeholder="Address" name="address">
+                                        <div class="fo fo2"><i class="fa fa-map-marker"  aria-hidden="true"></i></div>
+                                    </div> 
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-box">
+                                        <input type="text" required value="{{profile.state}}" class="name" placeholder="State" name="state">
+                                        <div class="fo fo2"><i class="fa fa-map-marker"  aria-hidden="true"></i></div>
+                                    </div> 
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-box">
+                                        <input type="text" required value="{{profile.city}}" class="name" placeholder="City" name="city">
+                                        <div class="fo fo2"><i class="fa fa-map-marker"  aria-hidden="true"></i></div>
+                                    </div> 
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-box">
+                                        <input type="text" required value="{{profile.country}}" class="name" placeholder="Country" name="country">
+                                        <div class="fo fo2"><i class="fa fa-globe"  aria-hidden="true"></i></div>
+                                    </div> 
+                                </div>
+                                <input type="hidden" value="{{total}}" name="amount">
+                                <input type="hidden" name="order_number" value="{{order_code}}">
+                                <button type="submit">Proceed to Order</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 tabu">
+                        <div class="tab-hold">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>PRODUCT</th>
+                                    <th>PRICE</th>
+                                    <th>QUANTITY</th>
+                                </tr>
+        
+                                
+                                {% if shopcart %}
+                                    {% for items in shopcart  %}
+                                        <tr>
+                                            <td>
+                                                <p style="font-weight: bold;">{{items.product.title}}</p>
+                                            </td>
+                                            <td>
+                                                <p style="font-weight: bold;">
+                                                    {% if items.product.discount_price %}
+                                                        {{items.product.discount_price | floatformat:2 | intcomma}}
+                                                    {% else %}
+                                                        {{items.product.price | floatformat:2 | intcomma}}
+                                                    {% endif %}
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p style="font-weight: bold;">{{items.quantity}}</p>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                                    
+                            </table>
+                        </div>
+                        <div class="total-price">
+                            <table>
+                                <tr>
+                                    <td>Subtotal</td>
+                                    <td>&#8358; {{Subtotal | floatformat:2 | intcomma}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td>&#8358; {{total | floatformat:2 | intcomma}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="manu">
+                    <hr>
+                        <h4>Manufacturers</h4>
+                    <hr>
+                   <div class="row damu">
+                       
+                       {% if manufacturers %}
+                           {% for items in manufacturers  %}
+                           <div class="col-lg-2">
+                               <img src="{{items.manufacturers.url}}" alt="">
+                           </div>
+                           {% endfor %}
+                       {% endif %}
+                           
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Your Account</h6>
+                                <ul>
+                                    <li><a href="{% url 'user' %}"><span>YOUR ACCOUNT</span></a></li>
+                                    <li><a href="{% url 'userupdate' %}"><span>PERSONAL INFORMATION</span></a></li>
+                                    <li><a href=""><span>ADDRESSES</span></a></li>
+                                    <li><a href=""><span>DISCOUNT</span></a></li>
+                                    <li><a href=""><span>ORDER HISTORY</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Information</h6>
+                                <ul>
+                                    <li><a href="{% url 'contact' %}"><span>CONTACT</span></a></li>
+                                    <li><a href=""><span>SITEMAP</span></a></li>
+                                    <li><a href=""><span>LEGAL NOTICE</span></a></li>
+                                    <li><a href=""><span>TERMS AND CONDITIONS</span></a></li>
+                                    <li><a href=""><span>ABOUT US</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="foot-hold">
+                                <h6>Our Offer</h6>
+                                <ul>
+                                    <li><a href=""><span>NEW PRODUCTS</span></a></li>
+                                    <li><a href=""><span>TOP SELLERS</span></a></li>
+                                    <li><a href=""><span>SPECIALS/span></a></li>
+                                    <li><a href=""><span>MANUFACTURERS</span></a></li>
+                                    <li><a href=""><span>SUPPLIERS</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="foot-hold foot-hold1">
+                                <h6>{{profile.title|safe}}</h6>
+                                <p>
+                                    {{profile.about|safe}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endblock content %}
+</div>
+<div class="container-fluid copyfoot1">
+    {% block copyfoot %}{% include "copyfoot.html" %}{% endblock copyfoot %}
+</div>

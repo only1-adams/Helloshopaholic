@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block ghead %}{% include "ghead.html" %}{% endblock ghead %}
+<div class="container-fluid">
+    {% block header %}{% include "header.html" %}{% endblock header %}
+    {% block content %}{% include "content.html" %}{% endblock content %}
+</div>
+<div class="container-fluid copyfoot1">
+    {% block copyfoot %}{% include "copyfoot.html" %}{% endblock copyfoot %}
+</div>

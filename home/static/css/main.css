@@ -1,0 +1,1420 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    font-family: 'Roboto Slab', serif;
+    background-image: url(../images/white_leather.png);
+    background-position: center;
+    
+}
+.top{
+    background-color:rgb(231, 231, 231);
+    display: flex;
+    box-shadow: 0px 2px 2px 0px gray;
+}
+.icon{
+    display: flex;
+    margin-left: 10%;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.social{
+    margin-right: 5px;
+    background-color: gray;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 50px;
+}
+.social i{
+    font-size: 20px;
+    color: white;
+}
+.social:hover{
+    background-color: orange;
+}
+.top .active{
+    background-color: orange;
+    color: white;
+}
+.top .active i{
+    font-size: 14px;
+    margin-right: 3px;
+}
+ .top a i{
+    font-size: 14px;
+    margin-right: 3px;
+}
+ .top a{
+    position: relative;
+    left: 26%;
+    margin-right: 5px;
+    padding: 5px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+.logo img{
+    width: 200px;
+}
+.small{
+    font-size: 13px;
+    font-weight: bold;
+    background-color: orange;
+    margin-left: 3px;
+    padding: 6px;
+    border-radius: 15px;
+    color: white;
+}
+.top a:hover{
+    text-decoration: none;
+    color: white;
+    background-color: orange;
+}
+
+.c1{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 10px;
+    padding-left: 40px;
+    padding-right: 135px;
+    margin-top: 20px;
+}
+
+.line{
+    background-color: white;
+    padding: 5px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.dot{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    border: 2px  dotted  orangered;
+    padding: 5px;
+}
+.dot span{
+    font-size: 12px;
+    color: orangered;
+    font-weight: bold;
+}
+.euro{
+    padding: 5px;
+}
+.euro span{
+    font-size: 14px;
+    float: right;
+    font-weight: bold;
+    margin-left: 7px;
+}
+.gr{
+    background-color: lightgray;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 3px;
+    margin-top: 10px;
+    font-weight: lighter;
+    transition: 0.5s;
+}
+.gr:hover{
+    background-color: gray;
+}
+.gra{
+    background-color: orange;
+    color: white;
+}
+.gra:hover{
+    background-color: rgb(194, 126, 0);
+}
+.sci{
+    position: absolute;
+    left: 36%;
+    bottom: 70%;
+    
+}
+.sci i{
+    font-size: 22px;
+    color: orangered;
+}
+.smallacc{
+    display: none;
+}
+.toggler{
+    display: none;
+}
+.menu-list{
+    display: none;
+}
+.line:hover{
+    background-color: orangered;
+}
+.line:hover .dot{
+    border: 2px dotted white;
+}
+.line:hover .dot span{
+    color: white;
+}
+.line:hover .sci i{
+    color: white;
+}
+.c2{
+    padding-left: 35px;
+    padding-right: 135px;
+    margin-top: 15px;
+}
+.nav{
+    background-color: floralwhite;
+    border-radius: 5px;
+    box-shadow: 0px 2px 2px 0px gray;
+}
+.nav a{
+    margin: 0px;
+    font-size: 14px;
+    color: black;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+.dropdown{
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    outline:none;
+    border: none;
+}
+.dropdown-menu{
+    background-color:floralwhite;
+    padding: 0px;
+    width: 50%;
+    margin-top: 5px;
+}
+.dropdown-item{
+    padding: 10px;
+    
+}
+.re{
+    width: 100%;
+    border-radius: 3px;
+}
+.btn{
+    background-color: floralwhite;
+    outline: none;
+}
+.bravo{
+    background-color: orange;
+    border: 1px solid orange;
+    outline: 1px solid orange;
+    text-align: center;
+    padding: 7px;
+    margin-top: 5px;
+    width: 100%;
+    color: white;
+}
+.nav input{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    outline: none;
+    border: 1px solid lightgray;
+    padding-left: 10px;
+}
+nav ::placeholder{
+    font-size: 13px;
+}
+.nav .active{
+    background-color: orangered;
+}
+.c3{
+    padding-left: 35px;
+    padding-right: 135px;
+    margin-top: 15px;
+}
+.tab-content{
+    margin-top: 15px;
+}
+.product{
+    background-color: floralwhite;
+    padding: 10px;
+    font-size: 14px;
+}
+.pro{
+    margin-bottom: 3px;
+    padding: 2px;
+    cursor: pointer;
+}
+.pro span{
+    margin-left: 4px;
+    cursor: pointer;
+}
+.pro:hover{
+    background-color: rgb(231, 231, 231);
+    padding: 2px;
+    color: orange;
+}
+.pro:hover span{
+    margin-left: 4px;
+}
+.amount{
+    margin-top:12px;
+    padding: 4px;
+}
+.amount:hover{
+    padding: 4px;
+}
+.amount .small{
+    margin-left: 20px;
+}
+.amount:hover .small{
+    margin-left: 20px;
+}
+.card{
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0px 1px 1px 0px gray;
+}
+.card1{
+    margin-top: 25px;
+}
+.card-block{
+    background-color: rgb(231, 231, 231);
+}
+.card-block{
+    text-align: center;
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+.card-block button{
+    background-color: orange;
+    outline: none;
+    border: none;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    border-radius: 2px;
+    margin-top: 2px;
+    transition: 0.5s;
+}
+.card-block button:hover{
+    background-color: orangered;
+    outline: none;
+    border: none;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    border-radius: 2px;
+    margin-top: 2px;
+}
+.add{
+    font-size: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 6px;
+}
+.overlay{
+    position: absolute;
+    bottom: 50%;
+    left: 25%;
+    background-color: orange;
+    padding: 6px;
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+    transition: .5s;
+    opacity: 0;
+    cursor: pointer;  
+}
+.card:hover .overlay{
+    opacity: 1;
+    
+}.product1{
+    background-color: floralwhite;
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 55px;
+}
+.product1 h3{
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.dro{
+    background-color: antiquewhite;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid rgb(250, 212, 163);
+}
+.dro h5{
+    font-weight: bold;
+    color: brown;
+}
+.dro span{
+    font-size: 13px;
+    color: brown;
+}
+.dro button{
+    margin-top: 10px;
+    outline: none;
+    border: none;
+    background-color: lightgray;
+    padding: 6px;
+    font-weight: bold;
+}
+.paypal{
+    background-color: whitesmoke;
+    padding: 7px;
+    margin-top: 20px;
+}
+.paypal img{
+    width: 205px;
+}
+.upcoming{
+    background-color: orange;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    font-size: 13px;
+    
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.upcoming p{
+    margin-top: 3px;
+    color: white;
+}
+.upcoming:hover{
+    background-color: orangered;
+}
+.add1{
+    font-size: 14PX;
+    display: flex;
+    font-weight: bold;
+    
+    align-items: center;
+}
+.vi{
+    background-color: lightgray;
+    padding: 5px;
+}
+.cardo{
+    margin-top: 0px;
+    margin-bottom: 13px;
+    
+}
+.manu{
+    margin-top: 30px;
+}
+.manu h4{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.manu hr{
+    border: 1px solid white;
+}
+.footer{
+    background-color: black;
+    margin-top: 15px;
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+.foot-hold h6{
+    font-size: 14px;
+    color: white;
+}
+.foot-hold a{
+    font-size: 13px;
+    color: gray;
+}
+.foot-hold1 p{
+    font-size: 14px;
+    color: white;
+}
+.foot-hold li{
+    list-style: none;
+}
+.copyfoot1{
+    background-color: rgb(231, 231, 231);
+    box-shadow: 0px 0px 5px 0px gray;
+    padding: 7px;
+}
+.copyfoot{
+    padding-left: 40px;
+    padding-right: 135px;
+    font-size: 13px;
+}
+.copyhold{
+    display: flex;
+    justify-content: space-between;
+}
+.gototop{
+    position: fixed;
+    bottom: 30px;
+    left: 1150px;
+}
+.carousel-item img{
+    width: 100%;
+}
+.new{
+    display: flex;
+    justify-content: space-between;
+}
+.direct{
+    display: flex;
+    z-index: 2;
+}
+.direct div{
+    margin-left: 10px;
+    background-color: orange;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.direct div i{
+    color: white;
+    font-weight: bold;
+}
+.caro{
+    padding-left: 20px;
+    padding-right: 33px;
+}
+.caro .card{
+    width: 160px;
+}
+.cd{
+    position: absolute;
+    left: 100px;
+    bottom: 165px;
+}
+.propro .row{
+    margin-bottom: 15px;
+}
+.carda .overlay{
+    position: absolute;
+    bottom: 50%;
+    left: 17.5%;
+    background-color: orange;
+    padding: 6px;
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+    transition: .5s;
+    opacity: 0;
+    cursor: pointer;
+    
+    
+}
+.carda:hover .overlay{
+    opacity: 1;
+}
+#remo .carda img{
+    width: 100%;
+}
+.zoom{
+    display: flex;
+    justify-content: space-between;
+    
+    align-items: center;
+    margin-top: 10px;
+}
+.zoom1{
+    display: flex;
+    
+}
+.zoom1 div{
+    margin-right: 3px;
+
+}
+.plus{
+    background-color: red;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+}
+.plus1{
+    background-color:orange;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.plus:hover{
+    background-color: black;
+    color: white;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.plus1:hover{
+    background-color:orangered;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.view span{
+    font-size: 13px;
+    
+}
+.view{
+    background-color:rgb(231, 231, 231);
+    box-shadow: 0px 0px 3px 0px gray;
+    padding: 3px;
+    border-radius: 3px;
+}
+.imhold img{
+    height:150px;
+}
+.phold{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.phold p{
+    font-size: 14px;
+}
+.phold input{
+    position: relative;
+    left: 7%;
+}
+.prihold div{
+    float: right;
+    margin-bottom: 10px;
+    
+}
+.addo{
+    background-color: rgb(231, 231, 231);
+    padding: 4px;
+    outline: none;
+    border: none;
+    margin-top: 7px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+.viewo{
+    background-color: orange;
+    padding: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    outline: none;
+    border: none;
+    margin-top: 7px;
+    border-radius: 3px;
+    font-weight: bold;
+    color: white;
+}
+.kaka .row{
+    margin-bottom: 20px;
+}
+.three-hold h6{
+    font-weight: bold;
+}
+.three-hold .card-img{
+    margin-left: 40px;
+}
+.three-hold .overlay{
+    position: absolute;
+    bottom: 50%;
+    left: 32%;
+    background-color: orange;
+    padding: 6px;
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+    transition: .5s;
+    opacity: 0;
+    cursor: pointer;  
+}
+.cpd{
+    padding-left: 35px;
+    padding-right: 135px;
+    margin-top: 15px;
+}
+.catgo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orangered;
+    padding: 10px;
+}
+.catgo h6{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+.spd{
+    padding-left: 35px;
+    padding-right: 135px;
+    margin-top: 15px;
+}
+.pdv{
+    background-color: floralwhite;
+    display: flex;
+    
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+.pdv span{
+    font-size: 14px;
+    margin-right: 5px;
+}
+.namput{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.namput span,input,select{
+    margin-bottom: 25px;
+}
+.namp{
+    margin-bottom: 25px;
+}
+.namput input,select{
+    outline: none;
+    border: 1px solid rgb(231, 231, 231);
+    border-radius: 5px;
+    padding-left: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.namput input{
+    width: 100%;
+    margin-left: 20px;
+
+}
+
+.namo button{
+    padding: 5px;
+    font-weight: bold;
+    outline: none;
+    border: 1px solid orange;
+    border-radius: 3px;
+    background-color: orange;
+    color: white;
+    margin-top: 20px;
+}
+.sete {
+    
+    box-shadow: none;
+    background-color: none;
+    margin: 0px;
+}
+.sete .active{
+    background-color: orange;
+    border: 1px solid orangered;
+    border-bottom: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.hodl{
+    background-color: orange;
+    padding: 15px;
+}
+.hodl h6{
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: white;
+}
+.hodl p{
+    background-color: floralwhite;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 300px;
+    text-align: justify;
+    color: black;
+}
+.bodl{
+    background-color: orange;
+    padding: 10px;
+}
+.bodl h6{
+    color: white;
+}
+.bodl p{
+    color: white;
+}
+.bodl span{
+    color: white;
+}
+.bodl .viewo{
+    background-color: white;
+    color: black;
+}
+.bodl .row{
+    margin-bottom: 10px;
+}
+
+.csw{
+    margin: 0px;
+    border-left: 1px solid orangered;
+    border-right: 1px solid orangered;
+    border-bottom: 1px solid orangered;
+}
+.ses{
+    margin-top: 10px;
+    background-color: orangered;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 1px;
+}
+.ses h6{
+    text-align: center;
+}
+.register1{
+    background-color: floralwhite;
+    padding: 10px;
+}
+.firstn{
+    display: flex;
+}
+.firstn div{
+    margin-right: 10px;
+    width: 100%;
+}
+.resres .rew{
+    width: 96%;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+    transition: 0.5s;
+}
+.resres .rew:focus{
+    width: 96%;
+    outline: none;
+    border: 1px solid orangered;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+}
+.resres textarea{
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid gray;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+    width: 96%;
+}
+.resres textarea:focus{
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid orangered;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+}
+.resres label{
+    font-size: 13px;
+    color: black;
+    font-weight: bold;
+}
+.resres{
+    background-color: rgb(231, 231, 231);
+    padding-left: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.resmage{
+    margin-top: 70px;
+}
+.cosmage{
+    margin-top: 0px;
+}
+.btd{
+    text-align: center;
+    outline: none;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: white;
+    width: 50%;
+    padding: 5px;
+    margin-left: 90px;
+    transition: 0.5s;
+}
+.btd:hover{
+    text-align: center;
+    outline: none;
+    background-color: orangered;
+    border: 1px solid orangered;
+    border-radius: 10px;
+    color: white;
+    width: 50%;
+    padding: 5px;
+    margin-left: 90px;
+}
+.resres{
+    transition: 1s;
+    overflow: hidden;
+    position: relative;
+}
+.form-btn{
+    display: inline-block;
+}
+.resres span{
+    font-weight: bold;
+    padding: 0 10px;
+    columns: #555;
+    width: 100px;
+    display: inline-block;
+    cursor: pointer;
+}
+.resres1{
+    margin-top: 20px;
+    padding-top: 20px;
+}
+.fd{
+    margin-top: 150px;
+}
+#LoginForm a{
+    font-size: 12px;
+    margin-left: 140px;
+}
+.close{
+    outline: none;
+    border: 1px solid black;
+    position: relative;
+    bottom: 10px;
+}
+.alert{
+    background-color: orange;
+}
+.headr{
+    background-color: orangered;
+}
+.headr h2{
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+th{
+    background-color: orange;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+td{
+    padding: 10px 5px;
+}
+td img{
+    width: 80px;
+    height: 80px;
+}
+.updateprice{
+    background-color: floralwhite;
+}
+.updateprice button{
+    background-color: orange;
+    outline: none;
+    border: 1px solid orange;
+    padding: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.5s;
+    float: right;
+}
+.updateprice button:hover{
+    background-color: orangered;
+    outline: none;
+    border: 1px solid orangered;
+    padding: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+}
+.tabur{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.tabu{
+    background-color: floralwhite;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.total-price{
+    display: flex;
+    justify-content:flex-end;
+    margin-top: 50px;
+}
+.tota-price{
+    display: flex;
+    justify-content:flex-end;
+    margin-top: 10px;
+}
+.tota-price table{
+    width:100%;
+    max-width: 410px;
+}
+.total-price table{
+    border-top: 3px solid #ff523b;
+    width:100%;
+    max-width: 410px;
+    border-bottom: 3px solid #ff523b;
+}
+th:last-child{
+    text-align: right;
+}
+td:last-child{
+    text-align: right;
+}
+.tota-price button{
+    background-color: orange;
+    outline: none;
+    border: 1px solid orange;
+    padding: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+.tota-price button:hover{
+    background-color: orangered;
+    outline: none;
+    border: 1px solid orangered;
+    padding: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+}
+.tota-price button a{
+    text-decoration: none;
+    color: black;
+}
+.tota-price button:hover a{
+    text-decoration: none;
+    color: white;
+}
+
+
+
+
+
+
+
+/* checkout */
+.wrapper{
+    background-color: white;
+    padding: 15px;
+}
+.wrapper h6{
+    text-align: center;
+}
+.wrapper button{
+    background-color: orangered;
+    outline: none;
+    border: 1px solid orangered;
+    padding: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.input-group{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0;
+}
+.input-box{
+    margin-right: 10px;
+    width: 100%;
+    position: relative;
+}
+.input-box:last-child{
+    margin-right: 0;
+}
+.name{
+    padding-left: 35px ;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid lightgray;
+    outline: none;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    border-radius: 3px;
+    color: black;
+    font-size: 12px;
+}
+.name:focus{
+    -webkit-box-shadow:0 0 2px #ff523b;
+    -moz-box-shadow: 0 0 2px #ff523b;
+    box-shadow: 0 0 2px #ff523b;
+    border: 1px solid #ff523b;
+}
+.fo{
+    position: absolute;
+    bottom: 26px;
+    width: 30px;
+    height: 28px;
+    right: 176px;
+    background-color: rgb(231, 231, 231);
+    padding: 3px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+.fo1{
+    right: 177px;
+}
+
+.name:focus + .fo{
+    background-color: #ff523b;
+    color: white;
+    border-right: 1px solid #ff523b;
+    border: none;
+    transition: 1s;
+}
+.fo2{
+    position: absolute;
+    bottom: 26px;
+    right: 394px;
+    background-color: rgb(231, 231, 231);
+    padding: 3px;
+}
+.name:focus + .fo2{
+    background-color: #ff523b;
+    color: white;
+    border-right: 1px solid #ff523b;
+    border: none;
+    transition: 1s;
+}
+
+.fleco{
+    display: inline-flex;
+}
+.fleco div{
+    margin-right: 10px;
+}
+.hghg{
+    margin-top: 0%;
+}
+.hghg li{
+    list-style: none;
+    margin-bottom: 10px;
+}
+.hghg a{
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+}
+.hghg h6{
+    color: white;
+    
+
+}
+.hghg header{
+    background-color: orange;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.rehr{
+    display: none;
+}
+.alert{
+    font-size: 12px;
+    padding: 4px;
+}
+.alert span{
+    position: relative;
+    top: 7px;
+    outline: none;
+    padding: 0px;
+
+}
+.imhol{
+    border: 2px solid orange;
+}
+.imhol img{
+    width: 150px;
+    height: 150px;
+}
+.cv{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+.upload{
+    position: absolute;
+    z-index: -1;
+    top: 10px;
+    left: 8px;
+    font-size: 14px;
+    color: #b8b8b8;
+} 
+.button-wrap {
+    position: relative;
+    top: 90px;
+}
+.button-wrap span{
+    font-size: 9px;
+    font-weight: bold;
+}
+  .button {
+    display: inline-block;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: black;
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+}
+.product1 .row{
+    margin-top: 10px;
+}
+.product1 header{
+    background-color: black;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    color: white;
+}
+
+.file input{
+    font-size: 12px;
+    background-color: orange;
+}
+.cv div{
+    margin-right: 10px;
+}
+.df label{
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+}
+.df{
+    background-color: orange;
+    margin-left: 30px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.df button{
+    outline: none;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    width: 100%;
+    padding-top: 3px;
+    padding-bottom: 2px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+.df input{
+    font-size: 13px;
+    padding-left: 5px;
+    margin-left: 20px;
+    width: 100%;
+    outline: none;
+    border: 1px solid gray;
+}
+.df select{
+    font-size: 13px;
+    padding-left: 5px;
+    margin-left: 50px;
+    width: 90%;
+}
+.ff h6{
+    text-align: center;
+}
+.df ::placeholder{
+    font-weight: bold;
+    font-size: 10px;
+}
+#fet p{
+    font-size: 10px;
+    font-weight: bold;
+}
+.dd{
+    margin-top: 0px;
+    text-align: center;
+}
+.rp{
+    background-color: white;
+    margin-left: 16px;
+}
+.upp{
+    padding: 5px;
+}
+.upp input{
+    outline: none;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    width: 100%;
+    padding-top: 3px;
+    padding-bottom: 2px;
+    font-weight: bold;
+}
+.div{
+    display: flex;
+}
+.div p{
+    background-color: orangered;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 13px;
+    color: white;
+    padding: 5px;
+}
+.div span{
+    font-weight: normal;
+}
+.tgr{
+    margin-top: 0px;
+}
+.order{
+    background-color: white;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+.order-hold img{
+    margin-right: 100px;
+}
+.order span{
+    border: 2px solid orangered;
+    padding: 10px;
+    border-radius: 50px;
+    color: black;
+    transition: 0.5s;
+    
+}
+.order span:hover{
+    border: 2px solid orange;
+    background-color: orange;
+    padding: 10px;
+    border-radius: 50px;
+    color: white;
+    
+}
+.order a{
+    text-decoration: none;
+}
+.order div{
+    margin-bottom: 20px;
+}
+.upmage{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+.shift{
+    margin-left: 70px;
+    margin-top: 50px;
+    background-color: orange;
+    display: grid;
+    align-items: center;
+}
+.shift1{
+    position: relative;
+    bottom: 160px;
+    left: 160px;
+}
+.newu{
+    display: flex;
+    justify-content: space-around;
+}
+.newu input{
+    outline: none;
+}
+.std{
+    margin-left: 200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.Page-buttons{
+    margin: 0 auto 80px;
+}
+.Page-buttons span{
+    display: inline-block;
+    border: 1px solid #ff523b;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+.page-buttons span:hover{
+    background-color: #ff523b;
+    color: white;
+}
